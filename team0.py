@@ -7,7 +7,7 @@ strategy_description = 'Random then Betray'
     
 def move(my_history, their_history, my_score, their_score):
     
-    if len(their_history) <= 3:
+    if len(their_history) <= 25:
         a = 0
         a += random.randint(1, 2)
         if a != 1:
@@ -15,11 +15,7 @@ def move(my_history, their_history, my_score, their_score):
         else:
             return 'c'
     else:
-        if 'b' in their_history:
-            return 'b'
-        else:
-            return 'c'
-    
+        
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
