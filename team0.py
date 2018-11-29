@@ -7,7 +7,7 @@ strategy_description = 'Random then Betray'
     
 def move(my_history, their_history, my_score, their_score):
     
-    '''Picks random choices for the first 25 rounds'''
+    '''Picks random choices for the first 50 rounds'''
     
     if len(their_history) <= 50:
         a = 0
@@ -18,11 +18,7 @@ def move(my_history, their_history, my_score, their_score):
             return 'c'
      
     else:
-        if 'b' in their_history:
-            return 'b'
-        else:
-            return 'b'
-
+        return 'b'
 
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
