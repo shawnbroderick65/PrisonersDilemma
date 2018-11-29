@@ -7,17 +7,23 @@ strategy_description = 'Random then Betray'
     
 def move(my_history, their_history, my_score, their_score):
     
-    if len(their_history) <= 25:
+    '''Picks random choices for the first 25 rounds'''
+    
+    if len(their_history) <= 50:
         a = 0
         a += random.randint(1, 2)
         if a != 1:
             return 'b'
         else:
             return 'c'
+     
     else:
-        a
+        if 'b' in their_history:
+            return 'b'
+        else:
+            return 'b'
 
-    
+
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
