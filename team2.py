@@ -21,14 +21,14 @@ def move(my_history, their_history, my_score, their_score):
     percentc = 0
     percentb = 0
     if len(their_history) == 0:
-        return 'c'
+        return random.choice('cb')
     else:
         for x in range(len(their_history)):
             if 'c' == their_history[x]:
                 percentc += 1
-                if len(their_history) > 3:
-                    if 'c' == (their_history[x-2]) and 'c' == (their_history[x-1]) and 'c' == (their_history[x+2]):
-                        percentb =+ 5
+            if len(their_history) > 5 and 'b' != their_history[x]:
+                if 'c' == their_history[x] and 'c' == their_history[(x - 1)] and 'c' == their_history[(x - 2)] and 'c' == their_history[(x - 3)]:
+                    percentb += 5
         for y in range(len(their_history)):
             if 'b' == their_history[y]:
                 percentb += 1
