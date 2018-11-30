@@ -26,6 +26,9 @@ def move(my_history, their_history, my_score, their_score):
         for x in range(len(their_history)):
             if 'c' == their_history[x]:
                 percentc += 1
+                if len(their_history) > 3:
+                    if 'c' == (their_history[x-2]) and 'c' == (their_history[x-1]) and 'c' == (their_history[x+2]):
+                        percentb =+ 5
         for y in range(len(their_history)):
             if 'b' == their_history[y]:
                 percentb += 1
