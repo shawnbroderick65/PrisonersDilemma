@@ -1,3 +1,4 @@
+
 import random 
 ####
 # Each team's file must define four tokens:
@@ -28,8 +29,7 @@ def move(my_history, their_history, my_score, their_score):
     if len (their_history) == 0:
             return random.choice('cb')
     else:
-        if len(their_history) > 5 and 'b' != their_history[(x-1)] and 'c' == their_history[(x-2)] and 'c' == their_history[(x-3)]:
-            Bscore += 5
+        
             
         if Bscore == Cscore:
             return ('cb')
@@ -37,10 +37,13 @@ def move(my_history, their_history, my_score, their_score):
         for c in range(len(their_history)):
             if 'c' in their_history[c]:
                 Cscore += 1
+            if len(their_history) > 5 and 'b' != their_history[(c-1)] and 'c' == their_history[(c-2)] and 'c' == their_history[(c-3)]:
+                Bscore += 5
         for b in range(len(their_history)):
             if 'b' in their_history[b]:
                 Bscore += 1
-                
+            if len(their_history) > 5 and 'b' != their_history[(b-1)] and 'b' == their_history[(b-2)] and 'b' == their_history[(b-3)]:
+                Bscore += 5
         roll = random.randrange(100)
         if roll <= percent:
             return 'c'
