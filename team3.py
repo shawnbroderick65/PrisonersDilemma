@@ -9,15 +9,38 @@
 team_name = 'The name the team gives to itself' # Only 10 chars displayed.
 strategy_name = 'The name the team gives to this strategy'
 strategy_description = 'How does this strategy decide?'
+import random
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
     Make my move.
-    Returns 'c' or 'b'. 
-    '''
-
+    Returns 'c' or 'b'. '''
+    betrayals = 0
+    colludes = 0
+    chanceCollude = 40
+    if (len(their_history) > 0):
+        for i in range(0,len(their_history)):
+            if (their_history[i] == 'b'):
+                betrayals+=1
+            else:
+                colludes+=1
+        if (their_history[-1] == 'b') and (len(their_history) > 5) and (chanceCollude - .7 >= 0):
+            chanceCollude-=.7
+        if (their_history[-1] == 'b') and (len(their_history) < 5):
+            return 'c'
+        if (betrayals > (len(their_history))/2) and (their_history[-1] == 'c'):
+            probability = random.randint(1, 100)
+            if (probability <= chanceCollude):
+                return 'c'
+            else:
+                return 'b'
+        if (colludes > betrayals*2):
+            probability2 = random.randint(1, 100)
+            if (probability2 <= chanceCollude):
+                return 'c'
+                chanceCollude += .7
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
     # The first round between these two players is my_history[0] and their_history[0].
@@ -25,8 +48,7 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
+
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
@@ -38,13 +60,10 @@ def test_move(my_history, their_history, my_score, their_score, result):
     if real_result == result:
         return True
     else:
-        print("move(" +
-            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
-                       str(my_score), str(their_score)])+
-            ") returned " + "'" + real_result + "'" +
-            " and should have returned '" + result + "'")
+        print("move(" + ", ".join(["'"+my_history+"'", "'"+their_history+"'", str(my_score), str(their_score)])+") returned " + "'" + real_result + "'" + " and should have returned '" + result + "'")
         return False
 
+'''
 if __name__ == '__main__':
      
     # Test 1: Betray on first move.
@@ -66,3 +85,4 @@ if __name__ == '__main__':
               my_score=0, 
               their_score=0,
               result='b')             
+'''
