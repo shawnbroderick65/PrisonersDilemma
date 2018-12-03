@@ -1,4 +1,5 @@
 import random
+
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -8,8 +9,11 @@ import random
 ####
 
 team_name = 'Zygomatics' # Only 10 chars displayed.
-strategy_name = 'Apapt and Change'
-strategy_description = 'If they have more betrays then concludes, will betray. Ff they have more concludes then betrays will conclude'
+
+strategy_name = 'Adapt and Change'
+strategy_description = 'How does this strategy decide?'
+
+
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -18,6 +22,7 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
+
     percentc = 0
     percentb = 0
     if len(their_history) == 0:
@@ -37,7 +42,19 @@ def move(my_history, their_history, my_score, their_score):
         if percentb < percentc:
                         return 'c'  
           
-  
+              
+    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
+    # their_history: a string of the same length as history, possibly empty. 
+    # The first round between these two players is my_history[0] and their_history[0].
+    # The most recent round is my_history[-1] and their_history[-1].
+    
+    # Analyze my_history and their_history and/or my_score and their_score.
+    # Decide whether to return 'c' or 'b'.
+    
+ 
+
+    
+
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
