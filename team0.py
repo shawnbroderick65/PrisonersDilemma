@@ -6,9 +6,7 @@ strategy_description = 'Random then Betray'
 
     
 def move(my_history, their_history, my_score, their_score):
-    
-    '''Picks random choices for the first 50 rounds'''
-    
+ 
     if len(their_history) <= 50:
         a = 0
         a += random.randint(1, 2)
