@@ -1,33 +1,58 @@
-####
-# Each team's file must define four tokens:
-#     team_name: a string
-#     strategy_name: a string
-#     strategy_description: a string
-#     move: A function that returns 'c' or 'b'
-####
+import random
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
-    
+team_name = 'Team 10' # Only 10 chars displayed.
+strategy_name = 'Winning'
+strategy_description = 'By not being stupid'   
+
 def move(my_history, their_history, my_score, their_score):
-    ''' Arguments accepted: my_history, their_history are strings.
-    my_score, their_score are ints.
-    
-    Make my move.
-    Returns 'c' or 'b'. 
-    '''
-
+    if len(their_history) == 99 or len(their_history) == 149 or len(their_history) == 69:
+        return 'b'
+    else:
+        if len(their_history) >= 2:
+            if 'b' in their_history[0]:
+                return 'b'
+            else:
+                if 'b' in their_history[-2]:
+                    return 'b'
+                else:
+                    dude = random.randint(1, 4)
+                    if 'c' in their_history[-1] and 'c' in their_history[-2] and dude == 1 or dude == 2:
+                        return 'b'
+                    else:
+                        guy = random.randint(1, 3)
+                        return 'c'
+                        if 'c' in their_history[-1] and guy == 2:
+                            return 'b'
+                        else:
+                            prob = random.randint(0,5)
+                            if prob == 2:
+                                return 'b'
+                            else:
+                                return 'c'
+        else:
+            if len(their_history) >= 1:
+                if 'b' in their_history[0]:
+                    return 'b'
+                else:
+                    if 'b' in their_history[-1]:
+                        return 'b'
+                    else:
+                        if 'c' in their_history[-1] and dude == 3:
+                            return 'b'
+                        else:
+                            return 'c'
+            else:
+                return 'c'
+           
+'''      
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
     # The first round between these two players is my_history[0] and their_history[0].
     # The most recent round is my_history[-1] and their_history[-1].
     
     # Analyze my_history and their_history and/or my_score and their_score.
-    # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
-
+    # Decide whether to return 'c' or 'b'. 
+'''
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
@@ -52,7 +77,7 @@ if __name__ == '__main__':
               their_history='', 
               my_score=0,
               their_score=0,
-              result='b'):
+              result='c'):
          print 'Test passed'
      # Test 2: Continue betraying if they collude despite being betrayed.
     test_move(my_history='bbb',
@@ -65,4 +90,4 @@ if __name__ == '__main__':
               # move('bbb', 'ccc', 0, 0) returns 'b'.
               my_score=0, 
               their_score=0,
-              result='b')             
+              result='c')             
