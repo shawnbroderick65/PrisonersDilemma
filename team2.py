@@ -1,3 +1,4 @@
+import random 
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -6,9 +7,10 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
+team_name = 'Zygomatics' # Only 10 chars displayed.
+strategy_name = 'Adapt and Change'
 strategy_description = 'How does this strategy decide?'
+
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -17,7 +19,39 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-
+    my_history = []
+    their_history = []
+    Bscore = 2
+    Cscore = 1
+    percent = abs(Bscore/Cscore)*100
+    
+    if len (their_history) == 0:
+            return random.choice('cb')
+    else:
+        if len(their_history) > 5 and 'b' != their_history[(x-1)] and 'c' == their_history[(x-2)] and 'c' == their_history[(x-3)]:
+            Bscore += 5
+            
+        if Bscore == Cscore:
+            return ('cb')
+            
+        for c in range(len(their_history)):
+            if 'c' in their_history[c]:
+                Cscore += 1
+        for b in range(len(their_history)):
+            if 'b' in their_history[b]:
+                Bscore += 1
+                
+        roll = random.randrange(100)
+        if roll <= percent:
+            return 'c'
+            my_history.append('c')
+            
+        else:
+            return 'b'
+            my_history.append('b')
+       
+    
+            
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
     # The first round between these two players is my_history[0] and their_history[0].
